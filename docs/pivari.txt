@@ -1,0 +1,13 @@
+Type Bits/KeyID    Date       User ID
+pub   512/6CD85B6D 1997/07/03 Fabrizio Pivari <Pivari@geocities.com>
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: 2.6.3i
+
+mQBNAzO7tlQAAAECALP/5gZPhKJzkeiSQ1b5QPTi80VA8oSDDqcKA5BhRmgGzFgZ
+aqjn1r5ScP80cJaOMxUl7NMYV3URhRjOVWzYW20ABRG0JkZhYnJpemlvIFBpdmFy
+aSA8UGl2YXJpQGdlb2NpdGllcy5jb20+iQBVAwUQM7u2VIUYzlVs2FttAQF38QH+
+PdJ4ARSZQyQXz1YwV+Si3zUTe+DY/soZsMaiuqnsrw8O9FaJDuMXQEsrX4fz6jom
+NrfsedYtzBE/f8XyWtbBvg==
+=9cce
+-----END PGP PUBLIC KEY BLOCK-----

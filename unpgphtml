@@ -1,0 +1,74 @@
+#!/usr/local/bin/perl
+# Works with Perl4 and Perl5
+#
+# unpgphtml -- a perl script to unmake PGP signed web-pages
+#
+# by Fabrizio Pivari <Pivari@geocities.com> 19 September 1997
+#
+# Requires the pgp program
+#
+# Copy, use, and redistribute freely, but don't take my name off it and
+# clearly mark an altered version.  Fixes and enhancements cheerfully 
+# accepted.
+#
+# This is version 1.0.
+#
+
+require "newgetopt.pl";
+do GetOptions("help") || &printusage ;
+if ($opt_help) {&printusage};
+
+$out = "unpgphtml-out$$";
+if (@ARGV)
+   {
+   foreach $x (@ARGV)
+      {
+      $file = $x;
+      $dir = &dirname($x);
+      system("pgp < ${file} > ${out}");
+      open(TEMP, "$out")
+          || die("unpgphtml: couldn't open tempfile $out \n");
+      open(HTML, ">$file")
+          || die("unpgphtml: couldn't open $x\n");
+     while (<TEMP>)
+         {
+         s/ -->\n//;
+         s/<KBD>----BEGIN PGP SIGNED WEB-PAGE----<\/KBD>\n//;
+         s/<!PGPHTML.*<PRE>/<\/BODY>\n<\/HTML>/;
+         print HTML $_;
+         }
+
+      close(TEMP);
+      }
+   unlink($out);
+   }
+
+sub dirname
+# return filename with the basename part stripped away
+   {
+   my($file) = @_;
+   if ($file =~ /\//) {$file =~ s:/[^/]*$::;}
+   else {$file = ".";}
+   return($file);
+   }
+
+sub printusage {
+    print <<USAGEDESC;
+
+usage:
+        unpgphtml [-options ...] files
+
+where options include:
+    -help                        print out this message
+
+files:
+    with files you can use metacharacters and relative and absolute path name
+    
+If you want to know more about this tool, you might want
+to read the docs. They came together with unpgphtml!
+
+Home: http://www.geocities.com/CapeCanaveral/Lab/3469/unpgphtml.html
+
+USAGEDESC
+    exit(1);
+}
